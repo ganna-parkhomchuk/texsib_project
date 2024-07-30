@@ -1,0 +1,246 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("/static/fonts/Montserrat/Montserrat-Regular.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/static/fonts/Montserrat/Montserrat-SemiBold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Material Icons";
+    font-style: normal;
+    /* src: url("/static/fonts/Materialicons/MaterialIcons-Regular.ttf"); */
+    src: url("/static/fonts/Materialicons/MaterialIcons.woff2");
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --bg_color: #fff;
+    --bg_color_2: #f2f2f2;
+    --font_color: #202020;
+    --font_color_trans: #20202045;
+    --accent_bg_color: #dd0b2f;
+    --accent_font_color: #fff;
+    --accent_bg_color_hover: #a71b33;
+    --error_color: #e61c3f;
+}
+
+body {
+    background-color: var(--bg_color_2);
+    color: var(--font_color);
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    box-sizing: border-box;
+    background-color: var(--accent_bg_color);
+    color: var(--accent_font_color);
+    border-radius: 3px;
+    border: 2px solid var(--accent_bg_color);
+    font-weight: 600;
+    padding: 7px;
+    transition: all .1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    outline: none;
+    text-overflow: ellipsis;
+    box-sizing: content-box;
+    cursor: pointer;
+}
+
+#header-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+}
+#header-links a {
+    text-decoration: none;
+}
+
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="date"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="color"],
+input[type="file"],
+label,
+select,
+button {
+    cursor: pointer;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    box-sizing: border-box;
+    background-color: var(--accent_bg_color);
+    color: var(--accent_font_color);
+    border-radius: 3px;
+    border: 2px solid var(--accent_bg_color);
+    font-weight: 600;
+    padding: 7px;
+    transition: all .1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    outline: none;
+    text-overflow: ellipsis;
+    box-sizing: content-box;
+}
+
+input[type="reset"],
+input[type="button"].secondary,
+button.secondary {
+    background-color: var(--accent_font_color);
+    color: var(--accent_bg_color);
+}
+
+input[type="reset"]:not(:disabled):hover,
+input[type="button"].secondary:not(:disabled):hover,
+button.secondary:not(:disabled):hover,
+input[type="reset"].selected:not(:disabled),
+input[type="button"].secondary.selected:not(:disabled),
+button.secondary.selected:not(:disabled) {
+    color: var(--accent_font_color);
+}
+
+input[type="submit"]:not(:disabled):hover,
+input[type="reset"]:not(:disabled):hover,
+input[type="button"]:not(:disabled):hover,
+button:not(:disabled):hover,
+button:not(:disabled).selected {
+    background-color: var(--accent_bg_color_hover);
+    border-color: var(--accent_bg_color_hover);
+    outline: none;
+}
+
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button.secondary:hover,
+input[type="reset"].selected,
+input[type="button"].selected,
+button.secondary.selected {
+    border-color: var(--accent_bg_color_hover);
+}
+
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+input[type="button"]:disabled,
+button:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+    border-radius: 3px;
+    border: 1px solid var(--bg_color_2);
+    padding: 5px 10px;
+    color: var(--font_color);
+    background-color: var(--bg_color);
+    width: auto;
+    transition: .1s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="number"]:hover,
+input[type="search"]:hover,
+input[type="tel"]:hover,
+input[type="date"]:hover,
+textarea:hover,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border-color: var(--font_color);
+    outline: none;
+}
+
+.password-help-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.password-help-row>i {
+    cursor: help;
+    opacity: .5;
+    transition: .1s ease-in-out;
+}
+
+.password-help-row>i:hover {
+    opacity: 1;
+}
+
+iframe,
+object,
+embed {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+a,
+a:link,
+a:visited,
+a span {
+    color: var(--accent_bg_color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+a:hover,
+a:hover span {
+    color: var(--accent_bg_color_hover);
+}

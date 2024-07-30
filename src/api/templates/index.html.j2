@@ -1,0 +1,86 @@
+{% extends "base.html.j2" %}
+
+{% block title %} Index {% endblock %}
+
+{% block head %}
+<!-- Extend base template's head. -->
+{{ super() }}
+
+<!-- Own files. -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}" />
+{% endblock %}
+
+<!-- Main Content for this View -->
+{% block content %}
+    <h1>Template Index</h1>
+
+    <!-- Form for Adding New Entry -->
+    <form method="POST">
+        <h2>Add New Entry</h2>
+
+        <label for="abteilungsname">Abteilungsname:</label>
+        <select id="abteilungsname" name="abteilungsname" required>
+            {% for department in departments %}
+                <option value="{{ department.ID }}">{{ department.Abteilungsname }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="ziel_aussage">Ziel Aussage:</label>
+        <input type="text" id="ziel_aussage" name="ziel_aussage" required>
+
+        <label for="bewertung">Bewertung:</label>
+        <input type="number" id="bewertung" name="bewertung" min="0" max="10" required>
+
+        <label for="bewertungskriterien">Bewertungskriterien:</label>
+        <input type="text" id="bewertungskriterien" name="bewertungskriterien" required>
+
+        <label for="aktueller_kommentar">Aktueller Kommentar:</label>
+        <input type="text" id="aktueller_kommentar" name="aktueller_kommentar" required>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Table for Displaying Data with Sortable Columns -->
+    <h2>Aktuelle Ziele</h2>
+    <table>
+        <thead>
+            <tr>
+                {% set sort_by = request.args.get('sort_by') %}
+                {% set filter_abteilungsname = request.args.get('filter_abteilungsname') %}
+                <th><a href="{{ url_for('index', sort_by='ID', filter_abteilungsname=filter_abteilungsname) }}">ID</a></th>
+                <th><a href="{{ url_for('index', sort_by='Abteilungsname', filter_abteilungsname=filter_abteilungsname) }}">Abteilungsname</a></th>
+                <th><a href="{{ url_for('index', sort_by='Ziel_Aussage', filter_abteilungsname=filter_abteilungsname) }}">Ziel Aussage</a></th>
+                <th><a href="{{ url_for('index', sort_by='Bewertung', filter_abteilungsname=filter_abteilungsname) }}">Bewertung</a></th>
+                <th><a href="{{ url_for('index', sort_by='Bewertungskriterien', filter_abteilungsname=filter_abteilungsname) }}">Bewertungskriterien</a></th>
+                <th><a href="{{ url_for('index', sort_by='Aktueller_Kommentar', filter_abteilungsname=filter_abteilungsname) }}">Aktueller Kommentar</a></th>
+                <th><a href="{{ url_for('index', sort_by='Datum', filter_abteilungsname=filter_abteilungsname) }}">Datum</a></th>
+                <th><a href="{{ url_for('index', sort_by='Aenderungsbenutzer', filter_abteilungsname=filter_abteilungsname) }}">Aenderungsbenutzer</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if results %}
+                {% for row in results %}
+                <tr>
+                    <td>{{ row.ID }}</td>
+                    <td>{{ row.Abteilungsname }}</td>
+                    <td>{{ row.Ziel_Aussage }}</td>
+                    <td>{{ row.Bewertung }}</td>
+                    <td>{{ row.Bewertungskriterien }}</td>
+                    <td>{{ row.Aktueller_Kommentar }}</td>
+                    <td>{{ row.Datum }}</td>
+                    <td>{{ row.Aenderungsbenutzer }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8">No data available</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
+
+<!-- Scripts needed for that view -->
+{% block javascript %} {{ super() }}
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
